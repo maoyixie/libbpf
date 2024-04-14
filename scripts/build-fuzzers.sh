@@ -79,4 +79,8 @@ make -C src -j$(nproc) CFLAGS="-I$(pwd)/elfutils/libelf $CFLAGS" BUILD_STATIC_ON
 $CC $CFLAGS -Isrc -Iinclude -Iinclude/uapi -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -c fuzz/bpf-object-fuzzer.c -o bpf-object-fuzzer.o
 $CXX $CXXFLAGS $LIB_FUZZING_ENGINE bpf-object-fuzzer.o src/libbpf.a "$(pwd)/elfutils/libelf/libelf.a" -l:libz.a -o "$OUT/bpf-object-fuzzer"
 
+#add
+$CC $CFLAGS -Isrc -Iinclude -Iinclude/uapi -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -c fuzz/bpf-object-fuzzer2.c -o bpf-object-fuzzer2.o
+$CXX $CXXFLAGS $LIB_FUZZING_ENGINE bpf-object-fuzzer2.o src/libbpf.a "$(pwd)/elfutils/libelf/libelf.a" -l:libz.a -o "$OUT/bpf-object-fuzzer2"
+
 cp fuzz/bpf-object-fuzzer_seed_corpus.zip "$OUT"
